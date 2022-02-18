@@ -31,6 +31,29 @@ def binary_search_game(l):
 
 file = open('students.json')
 data = json.load(file)
+data1 = []
+data2 = []
+data3 = []
+data4 = []
+data5 = []
+data6 = []
+data7 = []
+data8 = []
+data9 = []
+data10 = []
+for item in data['students']:
+    data1.append(item)
+    data2.append(item)
+    data3.append(item)
+    data4.append(item)
+    data5.append(item)
+    data6.append(item)
+    data7.append(item)
+    data8.append(item)
+    data9.append(item)
+    data10.append(item)
+    
+
 sorter = Sorter()
 
 '''start = timeit.default_timer()
@@ -49,7 +72,8 @@ start = timeit.default_timer()
 sorter.quick_sort(data['students'], 0, len(data['students']) - 1, 'first_name')
 print("Elapsed Time (Quick Sort: First Name): " + str(timeit.default_timer() - start))'''
 
-print(sys.getsizeof(data))
-sorter.quick_sort(data['students'], 0, len(data['students']) - 1, 'student_id')
+print(sorter.merge(data['students'], 'first_name'))
+
+'''sorter.quick_sort(data['students'], 0, len(data['students']) - 1, 'student_id')
 with open('new_students.json', 'w') as new_file:
-    json.dump(data, new_file, indent=4, ensure_ascii=True)
+    json.dump(data, new_file, indent=4, ensure_ascii=True)'''
