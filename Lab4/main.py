@@ -56,23 +56,60 @@ for item in data['students']:
 
 sorter = Sorter()
 
-'''start = timeit.default_timer()
-print(sorter.selection_sort(data['students'], 'first_name'))
+# Selection Sort
+# ID
+start = timeit.default_timer()
+sorter.selection_sort(data1, 'student_id')
+print("Elapsed Time (Selection Sort: ID): " + str(timeit.default_timer() - start))
+# First Name
+start = timeit.default_timer()
+sorter.selection_sort(data2, 'first_name')
 print("Elapsed Time (Selection Sort: First Name): " + str(timeit.default_timer() - start))
-start = timeit.default_timer()
-print(sorter.insertion_sort(data['students'], 'student_id'))
-print("Elapsed Time (Insertion Sort: ID): " + str(timeit.default_timer() - start))
-start = timeit.default_timer()
-print(sorter.bubble_sort(data['students'], 'student_id'))
-print("Elapsed Time (Bubble Sort: ID): " + str(timeit.default_timer() - start))
-start = timeit.default_timer()
-print(sorter.merge(data['students'], 'first_name'))
-print("Elapsed Time (Merge Sort: First Name): " + str(timeit.default_timer() - start))
-start = timeit.default_timer()
-sorter.quick_sort(data['students'], 0, len(data['students']) - 1, 'first_name')
-print("Elapsed Time (Quick Sort: First Name): " + str(timeit.default_timer() - start))'''
 
-print(sorter.merge(data['students'], 'first_name'))
+
+# Insertion Sort
+# ID
+start = timeit.default_timer()
+sorter.insertion_sort(data3, 'student_id')
+print("Elapsed Time (Insertion Sort: ID): " + str(timeit.default_timer() - start))
+# First Name
+start = timeit.default_timer()
+sorter.insertion_sort(data4, 'first_name')
+print("Elapsed Time (Insertion Sort: FirstName): " + str(timeit.default_timer() - start))
+
+# Bubble Sort
+# ID
+start = timeit.default_timer()
+sorter.bubble_sort(data5, 'student_id')
+print("Elapsed Time (Bubble Sort: ID): " + str(timeit.default_timer() - start))
+# First Name
+start = timeit.default_timer()
+sorter.bubble_sort(data6, 'first_name')
+print("Elapsed Time (Bubble Sort: First Name): " + str(timeit.default_timer() - start))
+
+# Merge Sort
+# ID
+start = timeit.default_timer()
+sorter.merge(data7, 'student_id')
+print("Elapsed Time (Merge Sort: ID): " + str(timeit.default_timer() - start))
+# First Name
+start = timeit.default_timer()
+sorter.merge(data8, 'first_name')
+print("Elapsed Time (Merge Sort: First Name): " + str(timeit.default_timer() - start))
+
+# Quick Sort
+# ID
+start = timeit.default_timer()
+sorter.quick_sort(data9, 0, len(data9) - 1, 'student_id', 0)
+print("Elapsed Time (Quick Sort: ID): " + str(timeit.default_timer() - start))
+#First Name
+start = timeit.default_timer()
+sorter.quick_sort(data10, 0, len(data10) - 1, 'first_name', 0)
+print("Elapsed Time (Quick Sort: First Name): " + str(timeit.default_timer() - start))
+
+print(sys.getsizeof(data1))
+print(sys.getsizeof("first_name"))
+
 
 '''sorter.quick_sort(data['students'], 0, len(data['students']) - 1, 'student_id')
 with open('new_students.json', 'w') as new_file:
