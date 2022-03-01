@@ -45,30 +45,49 @@ class BinaryTree:
         else:
             return self.__remove(self.root, data)
 
+    def remove_node(self, root, node):
+        if not root: # Return if root is None
+            return
+        if root == node: # If root is the target node
+            root = None # Set root to None
+            return
+        if root.left == node: # If the roots left child is target
+            root.left = None # Set left to None
+            return
+        if root.right == node: # If the roots right child is target
+            root.right = None # Set right to None
+            return
+        self.remove_node(root.left, node) # Remove from left sub tree
+        self.remove_node(root.right, node) # Remove from right sub tree
+
+
     def __remove(self, root, data):
-        node = self.find(data) 
-        if node:
-            if node.left and node.right:
-                temp = self.__traverse_right(node.right)
-                node.data = temp.data
-                node.right = self.__remove(node.right, temp)
-                return
-            else:
-                if node.left:
-                    temp = node.left
-                    node = None
-                    print(str(temp) + ' 233421edsadasda')
-                    return temp
-                else:
-                    temp = node.left
-                    print(str(temp) + ' FSDFSDFSFS')
-                    node = None
-                    return temp
-            print(str(temp.data) + ' 234fads')
-            return node.data
+        if not root:
+            return None
+        if not root.left and not root.right: # If no children
+            if root.data == data: # If root is the target
+                root = None # Set root to none
+                return root 
+            return root # Return root if not the target
+        node_queue = [] # Holds nodes to visit
+        node_queue.append(root) # adds current root node
+        found_node = None # Pointer for found node
+        while len(node_queue): # Contine while there are still nodes to visit
+            node = node_queue[0] # current node
+            node_queue.pop(0) # Remove current node from the queue
+            if node.data == data: #If the current node is target
+                found_node = node
+            if node.left: # Add left node to queue
+                node_queue.append(node.left)
+            if node.right: # Add right node to queue
+                node_queue.append(node.right)
+        if found_node: # If the target was found
+            found_node.data = node.data # Get its value 
+            self.remove_node(root, node) # Remove the found node
+        return root # Return if not found
     
     def __traverse_right(self, node):
-        if not node.right:
+        if node.right == None:
             return node
         else:
             return self.__traverse_right(node.right)
@@ -95,7 +114,7 @@ class BinaryTree:
         return None # Target node was not found
                
     def min(self):
-        if not root:
+        if not self.root:
             return None
         else:
             return self.__min(self.root)         
@@ -107,9 +126,9 @@ class BinaryTree:
         left_min = sys.maxsize # Base min for left
         right_min = sys.maxsize # Base min for right
         if node.left: # Find min value of left subtree
-            left_max = self.__min(node.left) 
+            left_min = self.__min(node.left) 
         if node.right: # Find mi value of right subtree
-            right_max = self.__min(node.right)
+            right_min = self.__min(node.right)
         if min < left_min and min <  right_min:
             return min # Return current node as min
         elif left_min < min and left_min < right_min:
@@ -118,7 +137,7 @@ class BinaryTree:
             return right_min # Return right min
 
     def max(self):
-        if not root:
+        if not self.root:
             return None
         else:
             return self.__max(self.root)
@@ -147,7 +166,7 @@ class BinaryTree:
     def __inorder(self, node):
         if node:
             self.__inorder(node.left) # Print left node first
-            print(node.data) # Print parent node
+            print(node.data, end=" ") # Print parent node
             self.__inorder(node.right) # Print right node
             
     def preorder(self):
@@ -156,7 +175,7 @@ class BinaryTree:
 
     def __preorder(self, node):
         if node:
-            print(node.data) # Print parent node first
+            print(node.data, end=" ") # Print parent node first
             self.__preorder(node.left) # Print left node
             self.__preorder(node.right) # Print right node         
 
@@ -168,7 +187,7 @@ class BinaryTree:
         if node:
             self.__postorder(node.left) # Print left node first
             self.__postorder(node.right) # Print right node
-            print(node.data) # Print parent node
+            print(node.data, end=" ") # Print parent node
 
     def merge(self, tree):
         if not self.root:
@@ -204,3 +223,15 @@ class BinaryTree:
             return 0
         else: # Count the number of nodes
             return (1 + self.__size(node.left) + self.__size(node.right))
+    
+    def print(self):
+        node_queue = [] # Holds nodes to visit
+        node_queue.append(self.root) # Adds the current node to the queue
+        while len(node_queue): # Continue while there are still nodes to visit
+            node = node_queue.pop()
+            print(str(node.data), end=" ")
+            if node.left: # Add left child node to queue
+                node_queue.append(node.left)
+            if node.right: # Add right child node to queue
+                node_queue.append(node.right)
+        return None # Target node was not found
