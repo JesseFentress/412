@@ -73,7 +73,6 @@ class Sorter:
                 right = right - 1
             sum = sum + self.swap(l, left, right, sum)
         sum = sum + self.swap(l, left, high, sum)
-        print(sum)
         return left
 
     def quick_sort(self, l, low, high, key, sum):
