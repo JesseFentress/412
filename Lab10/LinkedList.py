@@ -14,6 +14,7 @@ class LinkedList:
     def append(self, new_data):
         if not self.head:
             self.head = LLNode(new_data)
+            self.last = self.head
         else:
             self.last.tail = LLNode(new_data)
             self.last = self.last.tail
@@ -25,7 +26,7 @@ class LinkedList:
                 if current_node == self.head:
                     self.head = current_node.tail
                     current_node.tail = None
-                elif current_node == self.tail:
+                elif current_node == self.last:
                     previous_node.tail = None
                     self.last = previous_node
                 else:
@@ -48,6 +49,8 @@ class LinkedList:
     def print(self):
         current_node = self.head
         while current_node:
-            print(current_node.data)
+            print(str(current_node.data) + ' ,', end='')
+            current_node = current_node.tail
+        print()
             
         

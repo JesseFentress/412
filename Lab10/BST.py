@@ -14,22 +14,19 @@ class BST:
         self.root = None
         self.size  = 0
 
-    def insert(self, node, data, file_url):
+    def insert(self, node, data):
         if not self.root: # BST is empty
             self.root = Node(data)
-            self.__db_insert(data.get_all(), file_url)
-        elif node.data.get_id() >= data.get_id(): # Go left
+        elif node.data >= data: # Go left
             if not node.left: # If current node's left is empty
                 node.left = Node(data)
-                self.__db_insert(data.get_all(), file_url)
             else: # Insert into left subtree
-                self.insert(node.left, data, file_url)
+                self.insert(node.left, data)
         else: # Go right
             if not node.right: # If current node's right is empty
                 node.right = Node(data)
-                self.__db_insert(data.get_all(), file_url)
             else: # Insert into right subtree
-                self.insert(node.right, data, file_url)
+                self.insert(node.right, data)
         self.size += 1 # Increase size attribute
 
     def __db_insert(self, data, file_url):
@@ -39,19 +36,19 @@ class BST:
             file.close() # Close file
 
     
-    def remove(self, node, target, file_url):
+    def remove(self, node, target):
         if not node:
             return node
         else:
-            if node.data.get_id() < target:
+            if node.data < target:
                 node.right = self.remove(node.right, target)
-            elif node.data.get_id() > target:
+            elif node.data > target:
                 node.left = self.remove(node.left, target)
             else:
                 if node.left and node.right:
                     temp = self.find_min_node(node.right)
                     node.data = temp.data
-                    node.right = self.remove(node.right, temp.data.get_id())
+                    node.right = self.remove(node.right, temp.data)
                 else:
                     if not node.left:
                         temp = node.right
@@ -73,7 +70,7 @@ class BST:
     def __insert(self, node, data):
         if not self.root: # BST is empty
             self.root = Node(data)
-        elif node.data.get_id() >= data.get_id(): # Go left
+        elif node.data >= data: # Go left
             if not node.left: # If current node's left is empty
                 node.left = Node(data)
             else: # Insert into left subtree
@@ -103,11 +100,11 @@ class BST:
 
 
     def find(self, node, target):
-        if node.data.get_id() == target: # Student is found
+        if node.data == target: # Student is found
             return node # Return node that contains the student
-        elif node.data.get_id() >= target and node.left: # Traverse left
+        elif node.data >= target and node.left: # Traverse left
             return self.find(node.left, target)
-        elif node.data.get_id() < target and node.right: # Traverse right
+        elif node.data < target and node.right: # Traverse right
             return self.find(node.right, target)
         else:
             return None # student not found
@@ -120,5 +117,5 @@ class BST:
     def __inorder(self, node):
         if node:
             self.__inorder(node.left) # Print left node first
-            print(node.data.get_all(), end=" ") # Print parent node
+            print(node.data, end=" ") # Print parent node
             self.__inorder(node.right) # Print right node

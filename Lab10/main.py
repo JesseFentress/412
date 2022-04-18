@@ -77,21 +77,21 @@ print()
 
 # Print Binary Tree
 start = timeit.default_timer()
-#binary_tree1.inorder()
+binary_tree1.inorder()
 print('Elapsed Time: ' + str(timeit.default_timer() - start))
 print()
 
 
 # Print Binary Search Tree
 start = timeit.default_timer()
-#binary_search_tree1.inorder()
+binary_search_tree1.inorder()
 print('Elapsed Time: ' + str(timeit.default_timer() - start))
 print()
 
 
 # Print LinkedList
 start = timeit.default_timer()
-#linked_list1.print()
+linked_list1.print()
 print('Elapsed Time: ' + str(timeit.default_timer() - start))
 print()
 
