@@ -10,11 +10,11 @@ graph = {'1': {'2': 10, '3': 15, '6': 5},
 wg = WeightedGraph(graph)
 
 print("Breadth-First Search (Path from 1 to 4):")
-print(wg.bfs('1', '4'))
+print(wg.bfs('1', '5'))
 print()
 
 print("Depth-First Search (Path from 1 to 4):")
-print(wg.dfs('1', '4'))
+print(wg.dfs('1', '5'))
 print()
 
 print("Dijkstra's Algorithm (Starting at 1):")

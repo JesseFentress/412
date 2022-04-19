@@ -33,12 +33,13 @@ print(bst.inorder())
 
 
 print("Find ID 123:")
-print(bst.find(bst.root, '123'))
+print(bst.find(bst.root, '74243'))
 print("Find ID 56387")
 print(bst.find(bst.root, '56387'))
 
 print("Insert new student 29999")
 bst.insert(bst.root, Student(['29999', 'sf', 'sf', 'sd', 'sf']), 'students.csv')
+print(bst.inorder())
 
 print("Is BST")
 print(bst.is_bst(bst.root))
