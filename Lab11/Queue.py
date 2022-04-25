@@ -2,6 +2,7 @@ class Queue:
 
     def __init__(self):
         self.list = []
+        self.id = None
 
     # Returns true if the list is equivalent to an empty list, false if not
     def is_Empty(self):

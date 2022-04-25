@@ -11,18 +11,27 @@ class PriorityQueueOfQueues:
     def fill_queues(self, queue_sizes):
         for i in range(0, int(self.number_of_queues)):
             self.dictionary_of_queues['queue'+str(i+1)] = Queue()
+            self.dictionary_of_queues['queue'+str(i+1)].id = 'queue'+str(i+1)
             for n in range(0, int(queue_sizes[i])):
-                self.dictionary_of_queues['queue'+str(i+1)].enqueue(str(i+1)+":"+str(n))
+                self.dictionary_of_queues['queue'+str(i+1)].enqueue('Line ' + str(i+1) + ' Person ' + str(n))
     
+    def insert(self, queue_id, num_of_items):
+        for i in range(self.dictionary_of_queues['queue'+queue_id].size(), self.dictionary_of_queues['queue'+queue_id].size() + num_of_items):
+            self.dictionary_of_queues['queue'+queue_id].enqueue('Line ' + queue_id + ' Person ' + str(i))
+        self.priority_queue.change_priority('queue'+queue_id, self.dictionary_of_queues['queue'+queue_id].size())
+
+
     def load_priority_queue(self):
         for queue in self.dictionary_of_queues:
             self.priority_queue.insert(self.dictionary_of_queues[queue], self.dictionary_of_queues[queue].size())
     
     def remove_one_item(self):
         removed = self.priority_queue.remove()
+        removed_item = removed.dequeue()
+        self.print_removed(removed, removed_item)
         if not removed.is_Empty():
                 self.priority_queue.insert(removed, removed.size())
-        return removed.dequeue()
+        return removed_item
    
     def remove_all_items(self):
         items = []

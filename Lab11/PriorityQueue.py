@@ -49,16 +49,16 @@ class PriorityQueue:
 
     def change_priority(self, item, priority):
         index = 0
-        for i in range(1, self.size):
-            if self.heap[1][0] == item:
+        for i in range(1, self.size + 1):
+            if self.heap[i][0].id == item:
                 index = i
                 break
         if priority < self.heap[index][1]:
             return
         else:
             self.heap[index][1] = priority
-            while index > 1 and self.heap[self.parent(index)][1] < self.heap[index][1]:
-                self.swap(index, self.parent(index))
+            while index > 1 and self.heap[int(self.parent(index))][1] < self.heap[index][1]:
+                self.swap(index, int(self.parent(index)))
                 index = int(self.parent(index))
         
     def build_heap(self):
